@@ -2,6 +2,9 @@
 Universidade Ibirapuera.
 
 Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semestre do curso de Ciencia da Computação.
+<br/>
+
+![alt text](https://cdn.instructables.com/FXM/T494/IKFRTK8X/FXMT494IKFRTK8X.LARGE.jpg?auto=webp&width=1024&height=1024&fit=bounds)
 
 <br/>
 
