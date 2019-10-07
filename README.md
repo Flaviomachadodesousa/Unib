@@ -4,7 +4,7 @@ Universidade Ibirapuera.
 Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semestre do curso de Ciencia da Computação.
 <br/>
 
-![alt text](https://drive.google.com/file/d/1NeNWBuCiPSY2Cj4m1TOwZezv-v__XOVY/view?usp=sharing)
+![alt text](https://i.ibb.co/WphkYdK/carrinho-Arduino.jpg)
 
 <br/>
 	
