@@ -18,11 +18,12 @@
 AccelStepper stepper1(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
 AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
  
-
+//Motor passo ate 1500RPM Velocidade
+ 
 // variables
 int turnSteps = 2100; // number of steps for a 90 degree turn
 int lineSteps = -6600; //number of steps to drive straight
-int stepperSpeed = 1500; //speed of the stepper (steps per second)
+int stepperSpeed = 4096; //speed of the stepper (steps per second)
 int steps1 = 0; // keep track of the step count for motor 1
 int steps2 = 0; // keep track of the step count for motor 2
 
@@ -33,11 +34,11 @@ boolean turn2 = false; //keep track if we are turning or going straight next
 void setup() {
   delay(3000); //sime time to put the robot down after swithing it on
 
-  stepper1.setMaxSpeed(4000.0);
+  stepper1.setMaxSpeed(4096.0);
   stepper1.move(-1);  // I found this necessary
   stepper1.setSpeed(stepperSpeed);
 
-  stepper2.setMaxSpeed(4000.0);
+  stepper2.setMaxSpeed(4096.0);
   stepper2.move(-1);  // I found this necessary
   stepper2.setSpeed(stepperSpeed);
 
