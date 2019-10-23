@@ -10,13 +10,21 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 	
 1.	Relação de peças usadas
 	- 1 Arduino uno R1.
-	- 1 Placa Interface Serial Wifi modelo **Esp-01 Esp8266.**
-	- 2 Motores de passo com drive modelo **28byj-48 5v + Drive Uln2003 P.**
-	- 5 pares de Sensores Reflexivo Ótico modelo **Ir Tcrt5000.**
+	- 1 Modulo Wi-fi **Esp-01 Esp8266.**
+	- 2 Motores DC Gearbox
+	- 3 Sensores Reflexivo Ótico modelo **Ir Tcrt5000.**
 	- 1 kit de lego com 2 rodas.
 	- 1 Rodízio Giratório (roda boba) com diametros **4 cm altura, 5cm comprimento, 3 largura.**
-	- 2 baterias de **9v recarregavel.**
-	- 1 led **vermelho.**
+	- 2 Baterias de **9v recarregavel.**
+	- 3 Led **1 - Vermelho, 1 - Azul e 1 - Verde**
 	
-2. Biblioteca Usada
-   - AccelStepper **https://www.airspayce.com/mikem/arduino/AccelStepper/**
+2. BibliotecaS Usadas
+   - **Modulo Wi-fi Esp8266**
+   - Conexão à redes padrão 802.11 B/G/N
+   - Alcance aproximado: 91 metros
+   - Tensão de operação : 3.3 VDC
+   - Comunicação serial: pinos TX e RX
+   - Modos de operação : Cliente, Access Point, Cliente+Access Point
+   - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
+   - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+   
