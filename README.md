@@ -8,29 +8,42 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 
 <br/>
 	
-1.	Relação de peças usadas
+#	Relação de peças usadas
 	- 1 Arduino uno R1.
 	- 1 Modulo Wi-fi **Esp-01 Esp8266.**
 	- 2 Motores DC Gearbox
+	- 1 Driver Ponte **H L298N**
 	- 3 Sensores Reflexivo Ótico modelo **Ir Tcrt5000.**
 	- 1 kit de lego com 2 rodas.
 	- 1 Rodízio Giratório (roda boba) com diametros **4 cm altura, 5cm comprimento, 3 largura.**
 	- 2 Baterias de **9v recarregavel.**
 	- 3 Led **1 - Vermelho, 1 - Azul e 1 - Verde**
 	
-#	BibliotecaS Usadas
-2. **Modulo Wi-fi Esp8266**
-   - Conexão à redes padrão 802.11 B/G/N
-   - Alcance aproximado: 91 metros
-   - Tensão de operação : 3.3 VDC
-   - Comunicação serial: pinos TX e RX
-   - Modos de operação : Cliente, Access Point, Cliente+Access Point
-   - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
-   - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+#	Especificações peças usadas
+1. 	**Modulo Wi-fi Esp8266**
+	- Conexão à redes padrão 802.11 B/G/N
+	- Alcance aproximado: 91 metros
+	- Tensão de operação : 3.3 VDC
+	- Comunicação serial: pinos TX e RX
+	- Modos de operação : Cliente, Access Point, Cliente+Access Point
+	- Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
+	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
 
- 3. **Ir Tcrt5000**
+2.	**Ir Tcrt5000**
 	- Conexão
 	- Alcance 50mt
+	
+3.	**PONTE H L298N**
+	- Tensão de Operação: 4~35v
+	- Chip: ST L298N (Datasheet)
+	- Controle de 2 motores DC ou 1 motor de passo
+	- Corrente de Operação máxima: 2A por canal ou 4A max
+	- Tensão lógica: 5v
+	- Corrente lógica: 0~36mA
+	- Limites de Temperatura: -20 a +135°C
+	- Potência Máxima: 25W
+	- Dimensões: 43 x 43 x 27mm
+	- Peso: 30g
    
    
    
