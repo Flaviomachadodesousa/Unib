@@ -9,6 +9,7 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 <br/>
 	
 #	Relação de peças usadas
+1.	Arduino Robo seguidor de linha
 	- 1 Arduino uno R1.
 	- 1 Modulo Wi-fi **Esp-01 Esp8266.**
 	- 2 Motores DC Gearbox
