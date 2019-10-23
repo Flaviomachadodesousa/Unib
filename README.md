@@ -18,13 +18,59 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 	- 2 Baterias de **9v recarregavel.**
 	- 3 Led **1 - Vermelho, 1 - Azul e 1 - Verde**
 	
-2. BibliotecaS Usadas
-   - **Modulo Wi-fi Esp8266**
-    - Conexão à redes padrão 802.11 B/G/N
-    - Alcance aproximado: 91 metros
-    - Tensão de operação : 3.3 VDC
-    - Comunicação serial: pinos TX e RX
-    - Modos de operação : Cliente, Access Point, Cliente+Access Point
-    - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
-    - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+#	BibliotecaS Usadas
+2. **Modulo Wi-fi Esp8266**
+   - Conexão à redes padrão 802.11 B/G/N
+   - Alcance aproximado: 91 metros
+   - Tensão de operação : 3.3 VDC
+   - Comunicação serial: pinos TX e RX
+   - Modos de operação : Cliente, Access Point, Cliente+Access Point
+   - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
+   - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+
+ 3. **Ir Tcrt5000**
+	- Conexão
+	- Alcance 50mt
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
