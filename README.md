@@ -1,7 +1,7 @@
 # Unib
 Universidade Ibirapuera.
 
-<h2>Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semestre do curso de Ciencia da Computação.</h2>
+<h3>Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semestre do curso de Ciencia da Computação.</h3>
 <br/>
 
 ![alt text](https://i.ibb.co/WphkYdK/carrinho-Arduino.jpg)
