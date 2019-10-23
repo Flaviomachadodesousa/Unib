@@ -20,11 +20,11 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 	
 2. BibliotecaS Usadas
    - **Modulo Wi-fi Esp8266**
-   - Conexão à redes padrão 802.11 B/G/N
-   - Alcance aproximado: 91 metros
-   - Tensão de operação : 3.3 VDC
-   - Comunicação serial: pinos TX e RX
-   - Modos de operação : Cliente, Access Point, Cliente+Access Point
-   - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
-   - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+    - Conexão à redes padrão 802.11 B/G/N
+    - Alcance aproximado: 91 metros
+    - Tensão de operação : 3.3 VDC
+    - Comunicação serial: pinos TX e RX
+    - Modos de operação : Cliente, Access Point, Cliente+Access Point
+    - Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
+    - Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
    
