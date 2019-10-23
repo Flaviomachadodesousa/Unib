@@ -9,7 +9,7 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 <br/>
 	
 #	Relação de peças usadas
-1.	Arduino Robo seguidor de linha
+1.	Arduino Robo seguidor de linha com IOT
 	- 1 Arduino uno R1.
 	- 1 Modulo Wi-fi **Esp-01 Esp8266.**
 	- 2 Motores DC Gearbox
@@ -31,9 +31,13 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
 
 2.	**Ir Tcrt5000**
-	- Conexão
-	- Alcance 50mt
-	
+	- Modulo sensor reflexivo infravermelho TCRT5000;
+	- Distância de detecção: 1mm ~ 8 mm;
+	- Tensão de trabalho: 3.3V-5V;
+	- Saída Digital: TTL;
+	- Dimensão: 32mm x 14 mm;
+	- Utiliza comparador de tensão LM393.
+
 3.	**PONTE H L298N**
 	- Tensão de Operação: 4~35v
 	- Chip: ST L298N (Datasheet)
@@ -45,7 +49,8 @@ Projeto realizado dentro da Universidade Ibirapuera pelo os alunos do 6° semest
 	- Potência Máxima: 25W
 	- Dimensões: 43 x 43 x 27mm
 	- Peso: 30g
-   
+
+4.	**|||||||||**
    
    
    
