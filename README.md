@@ -30,7 +30,7 @@ Universidade Ibirapuera.
 	- Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
 	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
 
-2.	**Ir Tcrt5000**
+2.	**Modulo Ir Tcrt5000**
 	- Modulo sensor reflexivo infravermelho TCRT5000;
 	- Distância de detecção: 1mm ~ 8 mm;
 	- Tensão de trabalho: 3.3V-5V;
