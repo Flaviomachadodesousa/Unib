@@ -1,54 +1,42 @@
-//Programa : Controle 2 motores DC usando Ponte H L298N
-//Fonte: https://www.filipeflop.com/blog/motor-dc-arduino-ponte-h-l298n/
- 
-//Definicoes pinos Arduino ligados a entrada da Ponte H
-int IN1 = 4;
-int IN2 = 5;
-int IN3 = 6;
-int IN4 = 7;
-  
-void setup()
-{
- //Define os pinos como saida
- pinMode(IN1, OUTPUT);
- pinMode(IN2, OUTPUT);
- pinMode(IN3, OUTPUT);
- pinMode(IN4, OUTPUT);
+//Fonte: https://www.robocore.net/tutoriais/robo-seguidor-de-linha
+//OU https://portal.vidadesilicio.com.br/robo-seguidor-de-linha-sensor-infravermelho-e-pwm/
+//	Motores
+const int motorA = 5; //velocidade motor A - de 0 a 255
+const int motorB = 6; //velocidade motor B - de 0 a 255
+const int dirA = 7; //direcao do motor A - HIGH ou LOW
+const int dirB = 8; //direcao do motor B - HIGH ou LOW  
+//	Sensores
+int Sensor1 = 3;
+int Valor_Sensor1 = 0; 
+int Sensor2 = 4; 
+int Valor_Sensor2 = 0;
+
+void setup(){
+  pinMode(motorA, OUTPUT);
+  pinMode(motorB, OUTPUT);
+  pinMode(dirA, OUTPUT);
+  pinMode(dirB, OUTPUT);
+  digitalWrite(dirA, HIGH); 
+  digitalWrite(dirB, HIGH);
 }
 
-void loop()
-{
- //Gira o Motor A no sentido horario
- digitalWrite(IN1, HIGH);
- digitalWrite(IN2, LOW);
- delay(2000);
- //Para o motor A
- digitalWrite(IN1, HIGH);
- digitalWrite(IN2, HIGH);
- delay(500);
- //Gira o Motor B no sentido horario
- digitalWrite(IN3, HIGH);
- digitalWrite(IN4, LOW);
- delay(2000);
- //Para o motor B
- digitalWrite(IN3, HIGH);
- digitalWrite(IN4, HIGH);
- delay(500);
- 
- //Gira o Motor A no sentido anti-horario
- digitalWrite(IN1, LOW);
- digitalWrite(IN2, HIGH);
- delay(2000);
- //Para o motor A
- digitalWrite(IN1, HIGH);
- digitalWrite(IN2, HIGH);
- delay(500);
- //Gira o Motor B no sentido anti-horario
- digitalWrite(IN3, LOW);
- digitalWrite(IN4, HIGH);
- delay(2000);
- //Para o motor B
- digitalWrite(IN3, HIGH);
- digitalWrite(IN4, HIGH);
- delay(500);
+void loop(){
+  Valor_Sensor1 = analogRead(Sensor1); 
+  Valor_Sensor2 = analogRead(Sensor2); 
+  
+  if((Valor_Sensor1 > 700) && (Valor_Sensor2 > 700)){
+  	analogWrite(motorA, 150); 
+  	analogWrite(motorB, 150);
+  }
+  
+  if((Valor_Sensor1 < 700) && (Valor_Sensor2 > 700)){
+    analogWrite(motorA, 0); 
+  	analogWrite(motorB, 200);
+  }
+  
+  if((Valor_Sensor1 > 700) && (Valor_Sensor2 < 700)){
+    analogWrite(motorA, 200); 
+  	analogWrite(motorB, 0);
+  }  
+  
 }
