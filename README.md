@@ -21,14 +21,25 @@ Universidade Ibirapuera.
 	- 3 Led **1 - Vermelho, 1 - Azul e 1 - Verde**
 	
 #	Especificações peças usadas
-1. 	**Modulo Wi-fi Esp8266**
-	- Conexão à redes padrão 802.11 B/G/N
-	- Alcance aproximado: 91 metros
-	- Tensão de operação : 3.3 VDC
-	- Comunicação serial: pinos TX e RX
-	- Modos de operação : Cliente, Access Point, Cliente+Access Point
-	- Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
-	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+1. 	**Arduino Uno R1**
+	- Microcontrolador **ATmega328P**
+	- Tensão de operação **5V USB**
+	- Tensão de entrada Recomendada **7-12V**
+	- Tensão de entrada Máxima **6-20V**
+	- Pinos I/O  Digitais **14 (onde  6 são saídas PWM)**
+	- Pinos Digitais  I/O PWM **6**
+	- Pinos entrada Analogicos **6**
+	- Corrente DC por Pino I/O **20 mA**
+	- Corrente DC para Pino **3.3V	50 mA**
+	- Flash Memory	32 KB **(ATmega328P)**
+	- of which 0.5 KB used by bootloader
+	- SRAM	2 KB **(ATmega328P)**
+	- EEPROM 1 KB **(ATmega328P)**
+	- Clock Speed **16 MHz**
+	- LED_BUILTIN **13**
+	- Altura **68.6 mm**
+	- Comprimento **53.4 mm**
+	- Peso **25 g**
 
 2.	**Modulo Ir Tcrt5000**
 	- Modulo sensor reflexivo infravermelho TCRT5000;
@@ -50,9 +61,30 @@ Universidade Ibirapuera.
 	- Dimensões: 43 x 43 x 27mm
 	- Peso: 30g
 
-4.	**|||||||||**
-   
-   
+4.	**Modulo Wi-fi Esp8266**
+	- Conexão à redes padrão 802.11 B/G/N
+	- Alcance aproximado: 91 metros
+	- Tensão de operação : 3.3 VDC
+	- Comunicação serial: pinos TX e RX
+	- Modos de operação : Cliente, Access Point, Cliente+Access Point
+	- Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
+	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
+	
+#	Dificuldades na contrução
+1.	Uma das maiores dificuldade foi a instalação dos motores e ligações com as portas PWM para controle de velocidade.
+2.	Uma dificuldade tambem foi a ligação com o Modulo WI-FI **esp8266** e conseguir configurar para web serivce.
+3.	Outra dificuldade foi a distancia dos Modulos **Tcrt5000** a distancia entre o chao e muito pequena.
+4.	Instação das rodas de lego para ficar no centro da haste do motos assim a roda consegue ficar fixa e rodando certo.
+
+#	Etapas do projeto
+1.	Construção do chassi do robo em lego
+2.	Instalação do moto DC no chassi do robo
+3.	Instalação e ligação do modulo **PONTE H L298N** ao moto DC com controle de voltagem
+4.	Ligação e programação do Modulo **Wi-fi Esp8266**
+5.	Instalação e ligação dos modulos **Tcrt5000** para controle de linha assim conseguindo seguir a linha
+6.	Teste em pista
+7.	Projeto finalizado
+
    
    
    
