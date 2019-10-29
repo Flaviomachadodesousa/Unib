@@ -70,7 +70,7 @@ Universidade Ibirapuera.
 	- Modos de segurança wireless : OPEN/WEP/WPA_PSK/WPA2_PSK/WPA_WPA2_PSK
 	- Suporta comunicação TCP e UDP, com até 5 conexões simultâneas
 	
-#	Dificuldades na contrução
+#	Dificuldades na construção
 1.	Uma das maiores dificuldade foi a instalação dos motores e ligações com as portas PWM para controle de velocidade.
 2.	Uma dificuldade tambem foi a ligação com o Modulo WI-FI **esp8266** e conseguir configurar para web serivce.
 3.	Outra dificuldade foi a distancia dos Modulos **Tcrt5000** a distancia entre o chao e muito pequena.
