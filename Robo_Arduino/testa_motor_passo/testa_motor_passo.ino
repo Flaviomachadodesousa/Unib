@@ -1,82 +1,149 @@
-#include <AccelStepper.h> 
-#define HALFSTEP 8
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 
-// motor 1 pins     Port
-#define motorPin1  8     // IN1 on the ULN2003 driver 1
-#define motorPin2  9     // IN2 on the ULN2003 driver 1
-#define motorPin3  10    // IN3 on the ULN2003 driver 1
-#define motorPin4  11    // IN4 on the ULN2003 driver 1
+#ifndef STASSID
+#define STASSID "Genesio"
+#define STAPSK  "paumandado"
+// HTML
+#endif
 
-// motor 2 pins     Port
+String link = "'https://cloud.cadexchanger.com/embedded.html?fileId=5daded1e95c3120046777bf7&cameraType=perspective&autoPlay=1'";
+String BootStrap_Link = "'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'";
+const char* ssid = STASSID;
+const char* password = STAPSK;
 
-#define motorPin5  4     // IN1 on the ULN2003 driver 2
-#define motorPin6  5     // IN2 on the ULN2003 driver 2
-#define motorPin7  6    // IN3 on the ULN2003 driver 2
-#define motorPin8  7    // IN4 on the ULN2003 driver 2
+ESP8266WebServer server(80);
 
-// Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper with 28BYJ-48
-AccelStepper stepper1(HALFSTEP, motorPin1, motorPin3, motorPin2, motorPin4);
-AccelStepper stepper2(HALFSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
- 
+void handleRoot() 
+{
+  //  HTML
+  String html = "<!DOCTYPE><head><title>Robo</title></head>";
+  html += "<meta charset='utf-8'>";
+  html += "<meta name='viewport' content='width=device-width'>";
+  // LINKS BOOTSTRAP
+  html += "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css'>";
+  html += "<link rel='stylesheet' href="+BootStrap_Link;
+  html += "integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>";
+  html += "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css' integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>";
+  html += "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>";
+  // FIM LINKS BOOTSTRAP
+  html += "<style>h1{color:black;}</style></head>";
+  html += "<body bgcolor='ffffff'><center><h1>";
+  html += "<img src='https://i.ibb.co/hc5w6Hr/Untitled-2.png' alt='Responsive image'>";
+  // SCRIPTS
+  html += "<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>";
+  html += "<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>";
+  html += "<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>";
+  // FIM SCRIPTS
+  html += "<h1>Robo seguidor de linha com IOT</h1>";
+  html += "<div class='alert alert-danger' role='alert'>Recomendamos que use o navegado em modo Anonimo para o carregamento do projeto em 3D!</div>";
+  html += "<h4>Turma do 6° Semestre de Ciência da Computação</h4>";
+  html += "<h3>Projeto realizado dentro da Unib, com a orientação do professor Eduardo Furlan</h3>";
+  html += "<br>";
+  // 3D ARDUINO
+  html += "<h5>Modelo 3D da placa principal - Arduino Uno</h5>";
+  html += "<iframe src=" + link;
+  html += "width='auto' height='auto' frameborder='0'>";
+  html += "</iframe>";
+  html += "<br>";
+  // RELAÇÃO DAS PEÇAS
+  html += "<h4>Relação de peças usadas</h4>";
+  html += "<p>1 - Arduino uno R1.</p>";
+  html += "<p>1 - Modulo Wi-fi Esp-01 Esp8266.";
+  html += "<p>2 - Motores DC Gearbox.";
+  html += "<p>1 - Driver Ponte H L298N.";
+  html += "<p>3 - Sensores Reflexivo Ótico modelo Ir Tcrt5000.";
+  html += "<p>1 - kit de lego com 2 rodas.";
+  html += "<p>1 - Rodízio Giratório (roda boba) com diametros 4 cm altura, 5cm comprimento, 3 largura.";
+  html += "<p>2 - Baterias de 9v recarregavel.";
+  html += "<p>3 Leds - 1 - Vermelho, 1 - Azul e 1 - Verde";
+  html += "<br>";
+  html += "<br>";
+  // FOTOS
+  html += "<div class='container'>";
+  html += "<h1 class='font-weight-light text-center text-lg-left mt-4 mb-0'>Galeria</h1>";
+  html += "<hr class='mt-2 mb-5'>";
+  html += "<div class='row text-center text-lg-left'>";
+  // FOTO 1
+  html += "<div class='thumbnail'>";
+  html += "<img src='https://i.ibb.co/qgwZMYS/IMG-20191026-152529.jpg' alt=''>";
+  html += "</div>";
+  // FOTO 2
+  html += "<div class='thumbnail'>";
+  html += "<img src='https://i.ibb.co/gzCFDwf/IMG-20191026-152535.jpg' alt=''>";
+  html += "</div>";
+  // FOTO 3
+  html += "<div class='thumbnail'>";
+  html += "<img src='https://i.ibb.co/NT3qGq0/IMG-20191026-152555.jpg' alt=''>";
+  html += "</div>";
+  // FOTO 4
+  html += "<div class='thumbnail'>";
+  html += "<img src='https://i.ibb.co/s2wMsXw/IMG-20191026-163646.jpg' alt=''>";
+  html += "</div>";
 
-// variables
-int turnSteps = 2100; // number of steps for a 90 degree turn
-int lineSteps = -6600; //number of steps to drive straight
-int stepperSpeed = 1500; //speed of the stepper (steps per second)
-int steps1 = 0; // keep track of the step count for motor 1
-int steps2 = 0; // keep track of the step count for motor 2
-
-boolean turn1 = false; //keep track if we are turning or going straight next
-boolean turn2 = false; //keep track if we are turning or going straight next
-
+  html += "</div>";
+  html += "</div>";
   
-void setup() {
-  delay(3000); //sime time to put the robot down after swithing it on
-
-  stepper1.setMaxSpeed(4000.0);
-  stepper1.move(-1);  // I found this necessary
-  stepper1.setSpeed(stepperSpeed);
-
-  stepper2.setMaxSpeed(4000.0);
-  stepper2.move(-1);  // I found this necessary
-  stepper2.setSpeed(stepperSpeed);
-
+  // FIM FOTOS
+  html += "</body>";
+  html += "</html>";
+  
+  //  Enviando HTML para servidor
+  server.send(200, "text/html",html);
 }
-void loop() {
 
-  if (steps1 == 0) {
-    int target = 0;
-    if (turn1 == true) {
-      target = turnSteps;
-    }
+void handleNotFound() {
+  message += "URI: ";
+  message += server.uri();
+  message += "\nMethod: ";  String message = "File Not Found\n\n";
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,,000000000000000000000000000000000000000000000000000000000,,,,,,,,,,,,,,,,,,,,,,,,,,,,,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,000000000000000000000000000,,,,,,,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,00,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,000000000000000000000000000000,00,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,,,,000000,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,0
+  message += (server.method() == HTTP_GET) ? "GET" : "POST";
+  message += "\nArguments: ";
+  message += server.args();
+  message += "\n";,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  
+  for (uint8_t i = 0; i < server.args(); i++) {
+    message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
+  }
+  server.send(404, "text/plain", message);
+}
 
-    else {
-      target = -lineSteps;
-    }
+void setup(void) {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  Serial.println("");
 
-    stepper1.move(target);
-    stepper1.setSpeed(stepperSpeed);
-    turn1 = !turn1;
+  // Wait for connection
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Connected to ");
+  Serial.println(ssid);
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+
+  if (MDNS.begin("esp8266")) {
+    Serial.println("MDNS responder started");
   }
 
-  if (steps2 == 0) {
-    int target = 0;
-    if (turn2 == true) {
-      target = turnSteps;
-    }
+  server.on("/", handleRoot);
 
-    else {
-      target = -lineSteps;
-    }
+  server.on("/inline", []() {
+    server.send(200, "text/plain", "this works as well");
+  });
 
-    stepper2.move(target);
-    stepper2.setSpeed(stepperSpeed);
-    turn2 = !turn2;
-  }
+  server.onNotFound(handleNotFound);
 
-  steps1 = stepper1.distanceToGo();
-  steps2 = stepper2.distanceToGo();
+  server.begin();
+  Serial.println("HTTP server started");
+}
 
-  stepper1.runSpeedToPosition();
-  stepper2.runSpeedToPosition();
+void loop(void) {
+  server.handleClient();
+  MDNS.update();
 }
