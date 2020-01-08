@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
@@ -9,6 +11,19 @@
 // HTML
 #endif
 
+//Define os pinos para os leds
+int bluePin = 4;
+int redPin = 7;
+
+// Ligado diretamente ao pino tx do exp8266
+const byte rxPin = 2;
+
+// Ligado ao pino rx do esp8266(usar resistor para diminuir a voltagem)
+const byte txPin = 3;
+
+// Biblioteca do arduino que faz com que outros pinos digitais se comuniquem via serial
+SoftwareSerial esp(rxPin, txPin);
+
 String link = "'https://cloud.cadexchanger.com/embedded.html?fileId=5daded1e95c3120046777bf7&cameraType=perspective&autoPlay=1'";
 String BootStrap_Link = "'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'";
 const char* ssid = STASSID;
@@ -19,7 +34,7 @@ ESP8266WebServer server(80);
 void handleRoot() 
 {
   //  HTML
-  String html = "<!DOCTYPE><head><title>Robo</title></head>";
+  String html = "<!DOCTYPE><head><title>Unib Tron</title></head>";
   html += "<meta charset='utf-8'>";
   html += "<meta name='viewport' content='width=device-width'>";
   // LINKS BOOTSTRAP
@@ -58,7 +73,7 @@ void handleRoot()
   html += "<p>1 - kit de lego com 2 rodas.";
   html += "<p>1 - Rodízio Giratório (roda boba) com diametros 4 cm altura, 5cm comprimento, 3 largura.";
   html += "<p>2 - Baterias de 9v recarregavel.";
-  html += "<p>3 Leds - 1 - Vermelho, 1 - Azul e 1 - Verde";
+  html += "<p>3 - Leds. ";
   html += "<br>";
   html += "<br>";
   // FOTOS
@@ -74,15 +89,7 @@ void handleRoot()
   html += "<div class='thumbnail'>";
   html += "<img src='https://i.ibb.co/gzCFDwf/IMG-20191026-152535.jpg' alt=''>";
   html += "</div>";
-  // FOTO 3
-  html += "<div class='thumbnail'>";
-  html += "<img src='https://i.ibb.co/NT3qGq0/IMG-20191026-152555.jpg' alt=''>";
-  html += "</div>";
-  // FOTO 4
-  html += "<div class='thumbnail'>";
-  html += "<img src='https://i.ibb.co/s2wMsXw/IMG-20191026-163646.jpg' alt=''>";
-  html += "</div>";
-
+ 
   html += "</div>";
   html += "</div>";
   
@@ -120,6 +127,34 @@ void setup(void) {
     delay(500);
     Serial.print(".");
   }
+  
+  //Espera a conexão com o módulo esp8266
+  esp.begin(115200);
+  while(!esp) {
+    ; 
+  }
+  
+  //Define os pinos como saida de dados
+  pinMode(redPin,OUTPUT);
+  pinMode(bluePin,OUTPUT);
+
+  digitalWrite(redPin, HIGH);
+  delay(1000);
+  digitalWrite(redPin, LOW);
+  delay(1000);
+  digitalWrite(bluePin, HIGH);
+  delay(1000);
+  digitalWrite(bluePin, LOW);
+  delay(1000);
+
+  Serial.println("Serial and ESP8266 communication started!");
+  delay(1000);
+
+  //Reinicia o módulo
+  String result = sendCommand("AT+RST\r\n", 2000);
+  Serial.println(result);
+ 
+  
   Serial.println("");
   Serial.print("Connected to ");
   Serial.println(ssid);
